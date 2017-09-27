@@ -16,17 +16,17 @@ void test(void);
 
 // calculates factorial and power and divides them
 template<class T>
-T sum_n(T x, int n) {
-	return pow(x, n) / factorial(n);
+T sum_n(T x, T n) {
+	return pow(x, n / factorial(n));
 }
 
-//
+//sums up the factorials and powers
 template<class T>
 T expfak(T x) {
 	T result = 0;
 
 	// loop the summing function x times
-	for (int n = 0; n <= x; n++) {
+	for (T n = 0; n <= x; n++) {
 		result += sum_n(x, n);
 	}
 
@@ -34,11 +34,24 @@ T expfak(T x) {
 }
 
 int main() {
-	cout << expfak<int>(1) << '\n';
-	cout << expfak<int>(2) << '\n';
-	cout << expfak<int>(3) << '\n';
-	cout << expfak<int>(4) << '\n';
-	cout << expfak<int>(5) << '\n';
+
+	int num = 12;
+
+	cout << endl << "x = integers 1-" << num << endl;
+	for (int i = 0; i < num; i++) {
+		cout << "expfak(" << i << ") = " << expfak<int>(i) << '\n';
+	}
+
+	cout << endl << "x = long long 1-" << num <<endl;
+	for (long long i = 0; i < num; i++) {
+		cout << "expfak(" << i << ") = " << expfak<long long>(i) << '\n';
+	}
+
+	cout << endl << "x = double 1-" << num << endl;
+	for (double i = 0.0; i < num; i++) {
+		cout << "expfak(" << i << ") = " << expfak<double>(i) << '\n';
+	}
+
 	test();
 
 	return 0;
@@ -68,10 +81,11 @@ void test(void) {
 	assert(pow(2, 4) == 16);
 	assert(pow(2, 5) == 32);
 
-	assert(expfak<int>(0) == 0);
+	assert(expfak<int>(0) == 1);
 	assert(expfak<int>(1) == 2);
-	assert(expfak<int>(3) == 5);
-	assert(expfak<int>(4) == 8);
-	assert(expfak<int>(5) == 11);
+	assert(expfak<int>(2) == 5);
+	assert(expfak<int>(3) == 8);
+	assert(expfak<int>(4) == 11);
+	assert(expfak<int>(5) == 14);
 
 }
